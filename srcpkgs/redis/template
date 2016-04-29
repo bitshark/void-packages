@@ -1,8 +1,8 @@
 # Template file for 'redis'
 pkgname=redis
 version=3.0.7
-revision=1
-makedepends="jemalloc-devel"
+revision=2
+makedepends=""
 homepage="http://redis.io"
 distfiles="http://download.redis.io/releases/${pkgname}-${version}.tar.gz"
 short_desc="Advanced key-value store"

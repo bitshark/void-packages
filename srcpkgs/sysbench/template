@@ -1,0 +1,34 @@
+# Template file for 'sysbench'
+pkgname=sysbench
+version=1.0.8
+revision=1
+build_options="pgsql mysql"
+build_options_default="mysql"
+#wrksrc=
+#create_wrksrc=yes
+#only_for_archs="i686 x86_64"
+build_style=gnu-configure
+configure_args="$(vopt_with pgsql) $(vopt_with mysql)"
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends="make automake libtool pkg-config"
+makedepends="vim-common $(vopt_if pgsql postgresql-libs-devel) $(vopt_if mysql libmysqlclient-devel)"
+depends=""
+short_desc="a scriptable multi-threaded benchmark tool (cpu, io, memory, threads, db)"
+maintainer="bitshark <bitshark@bitshark.net>"
+license="GPL-2"
+homepage="https://github.com/akopytov/sysbench"
+distfiles="https://github.com/akopytov/sysbench/archive/1.0.8.tar.gz"
+checksum=2dad131a99578999c8159eccd2f7ec1b9da4eca9e646dfeb838cf72c00862d69
+desc_option_pgsql="Build with pgsql benchmarking support"
+desc_option_mysql="Build with mysql benchmarking support"
+
+pre_configure() {
+	./autogen.sh
+}
+
+do_build() {
+	make ${makejobs}
+}

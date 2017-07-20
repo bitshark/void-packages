@@ -1,4 +1,5 @@
 # Template file for 'sysbench'
+set -x
 pkgname=sysbench
 version=1.0.8
 revision=1
@@ -13,8 +14,8 @@ configure_args="$(vopt_with pgsql) $(vopt_with mysql)"
 #make_install_args=""
 #conf_files=""
 #make_dirs="/var/log/dir 0755 root root"
-hostmakedepends="make automake libtool pkg-config"
-makedepends="vim-common $(vopt_if pgsql postgresql-libs-devel) $(vopt_if mysql libmysqlclient-devel)"
+hostmakedepends="make automake libtool pkg-config $(vopt_if mysql zlib-devel libssl libcrypt)"
+makedepends="vim-common $(vopt_if pgsql postgresql-libs-devel) $(vopt_if mysql libmysqlclient-devel zlib-devel libssl libcrypto)"
 depends=""
 short_desc="a scriptable multi-threaded benchmark tool (cpu, io, memory, threads, db)"
 maintainer="bitshark <bitshark@bitshark.net>"

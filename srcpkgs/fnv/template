@@ -1,0 +1,22 @@
+# Template file for 'fnv'
+pkgname=fnv
+version=0.8.2
+revision=1
+#wrksrc=
+#create_wrksrc=yes
+#only_for_archs="i686 x86_64"
+build_style=gnu-configure
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends=""
+makedepends=""
+depends=""
+short_desc="FNV-1a Fast Hash Algorithm w/ sizes 32,64,128,and 256 bits."
+maintainer="bitshark <bitshark@bitshark.net>"
+license="MIT"
+homepage="https://github.com/fnvhash/libfnv"
+distfiles=""
+checksum=127a2fd41bca0c28ccd452244bc60d2e4f9294c30d1ff13af56261bf4a06c9f9

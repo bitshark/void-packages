@@ -1,11 +1,12 @@
 # Template file for 'atom'
+set -x
 pkgname=atom
 version=1.18.0
 revision=1
 nocross=yes
 nostrip=yes
-hostmakedepends="git pkg-config python-devel nodejs curl"
-makedepends="python-devel GConf-devel libgnome-keyring-devel libX11-devel libxkbfile-devel libsecret-devel"
+hostmakedepends="git pkg-config python-devel curl"
+makedepends="python-devel GConf-devel nodejs libgnome-keyring-devel libX11-devel libxkbfile-devel libsecret-devel"
 short_desc="Chrome-based text editor from Github"
 maintainer="Andrea Brancaleoni <abc@pompel.me>"
 license="MIT"
@@ -13,15 +14,17 @@ homepage="https://atom.io"
 distfiles="https://github.com/$pkgname/$pkgname/archive/v$version.tar.gz"
 checksum=bd2dd1423ac204b1d6b117dcbab405095a7f663b97d07519b0de4300158645b1
 
-only_for_archs="i686 x86_64"
+only_for_archs="i686 x86_64 x86_64-musl"
 
 pre_build() {
-	local NVM_VERSION=0.33.2
-	local NODE_VERSION=6
-	curl -o- https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash
-	source $HOME/.nvm/nvm.sh
-	nvm install $NODE_VERSION
-	nvm use $NODE_VERSION
+        git checkout 9763b804262b55dc62d1d4a8caede165a1ba30cd -- srcpkgs/nodejs
+        git merge FETCH_HEAD
+	#local NVM_VERSION=0.33.2
+	#local NODE_VERSION=6
+	#curl -o- https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash
+	#source $HOME/.nvm/nvm.sh
+	#nvm install $NODE_VERSION
+	#nvm use $NODE_VERSION
 
 	sed -e "s/<%= description %>/$pkgdesc/" \
 		-e "s|<%= appName %>|Atom|"\

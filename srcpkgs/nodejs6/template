@@ -1,19 +1,19 @@
 # Template file for 'nodejs'
 pkgname=nodejs6
-version=6.9.1
+version=6.11.1
 revision=1
-wrksrc=node-v${version}
-hostmakedepends="pkg-config python icu"
-makedepends="zlib-devel python-devel icu-devel
- $(vopt_if ssl libressl-devel) $(vopt_if libuv libuv-devel)
- $(vopt_if http_parser http-parser-devel)"
+wrksrc=node-${version}
+hostmakedepends="pkg-config python make icu"
+makedepends="zlib-devel python-devel icu-devel"
+#$(vopt_if ssl libressl-devel) $(vopt_if libuv libuv-devel)
+#$(vopt_if http_parser http-parser-devel)"
 depends="python"
 short_desc="Evented I/O for V8 javascript"
 maintainer="Enno Boland <gottox@voidlinux.eu>"
 license="MIT"
 homepage="http://nodejs.org/"
-distfiles="${homepage}/dist/v${version}/node-v${version}.tar.gz"
-checksum=a98997ca3a4d10751f0ebe97839b2308a31ae884b4203cda0c99cf36bc7fe3bf
+distfiles="https://github.com/nodejs/node/archive/v${version}.tar.gz"
+checksum=9c92557db48e298b0635d345e498719d529deb4632408ed7439f6509f3457442
 
 build_options="ssl libuv http_parser"
 desc_option_libuv="Enable shared libuv"
@@ -33,10 +33,8 @@ do_configure() {
 			*) msg_error "$pkgver: cannot be cross compiled for ${XBPS_TARGET_MACHINE}\n" ;;
 		esac
 	fi
-	./configure --prefix=/usr --shared-zlib --with-intl=system-icu \
-		$(vopt_if http_parser --shared-http-parser) \
-		$(vopt_if ssl --shared-openssl) \
-		$(vopt_if libuv --shared-libuv) ${_args}
+	#./configure --prefix=/usr --with-intl=system-icu 
+	./configure --prefix=/usr
 }
 do_build() {
 	if [ "$CROSS_BUILD" ]; then

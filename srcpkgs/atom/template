@@ -5,8 +5,8 @@ version=1.18.0
 revision=1
 nocross=yes
 nostrip=yes
-hostmakedepends="git pkg-config python-devel curl"
-makedepends="python-devel GConf-devel nodejs libgnome-keyring-devel libX11-devel libxkbfile-devel libsecret-devel"
+hostmakedepends="git pkg-config python-devel nodejs6 curl"
+makedepends="python-devel GConf-devel libgnome-keyring-devel nodejs6 libX11-devel libxkbfile-devel libsecret-devel"
 short_desc="Chrome-based text editor from Github"
 maintainer="Andrea Brancaleoni <abc@pompel.me>"
 license="MIT"
@@ -17,8 +17,8 @@ checksum=bd2dd1423ac204b1d6b117dcbab405095a7f663b97d07519b0de4300158645b1
 only_for_archs="i686 x86_64 x86_64-musl"
 
 pre_build() {
-        git checkout 9763b804262b55dc62d1d4a8caede165a1ba30cd -- srcpkgs/nodejs
-        git merge FETCH_HEAD
+        #git checkout 9763b804262b55dc62d1d4a8caede165a1ba30cd -- srcpkgs/nodejs
+        #git merge FETCH_HEAD
 	#local NVM_VERSION=0.33.2
 	#local NODE_VERSION=6
 	#curl -o- https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash

@@ -1,0 +1,28 @@
+# Template file for 'fuse-gitfs'
+pkgname=gitfs
+version=0.4.5.1
+revision=1
+#wrksrc=${version}
+#create_wrksrc=yes
+#only_for_archs="i686 x86_64"
+
+#build_style=gnu-configure
+build_style="python-module"
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+
+#build_style=python2-module
+hostmakedepends="python-devel pkg-config python-setuptools"
+makedepends="python-devel fuse-devel"
+#pycompile_module="fuse"
+depends=""
+short_desc="FUSE Filesystem to rw mount git repo locally"
+maintainer="bitshark <bitshark@bitshark.net>"
+license="Apache2"
+homepage="https://www.presslabs.com/gitfs/"
+distfiles="https://github.com/PressLabs/gitfs/archive/$version.tar.gz>$pkgname-$version.tar.gz"
+checksum=6049fd81182d9172e861d922f3e2660f76366f85f47f4c2357f769d24642381c
+

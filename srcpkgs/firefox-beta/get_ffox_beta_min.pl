@@ -1,0 +1,1 @@
+use version;$o_ver_max    = version->parse('0.0');$ver_max = "";while (<>) {if (/([\d.]+b\d+)/) {$_ = $ver_match   = $1;tr/b/./;$o_ver_line = version->parse($_);if ($o_ver_line > $o_ver_max) { $o_ver_max = $o_ver_line; $ver_max = $ver_match; }}}print "$ver_max\n";

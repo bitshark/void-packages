@@ -1,0 +1,22 @@
+# Template file for 'firefox-beta'
+pkgname=firefox-beta
+version=
+revision=1
+#wrksrc=
+#create_wrksrc=yes
+#only_for_archs="i686 x86_64"
+build_style=gnu-configure
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends=""
+makedepends=""
+depends=""
+short_desc=""
+maintainer="bitshark <bitshark@bitshark.net>"
+license="GPL-3"
+homepage=""
+distfiles=""
+checksum=badbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadbadb

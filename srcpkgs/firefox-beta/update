@@ -1,2 +1,4 @@
-site="${MOZILLA_SITE}/${pkgname}/releases/"
-pattern="\">\K[0-9.]+(?=/</a>)"
+#pkgname="firefox"
+pkgtgt="firefox"
+site="${MOZILLA_SITE}/${pkgtgt}/releases/"
+pattern="\">\K[0-9.]+b[0-9.]+(?=/</a>)"

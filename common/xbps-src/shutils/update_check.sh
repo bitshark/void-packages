@@ -1,5 +1,4 @@
 # vim: set ts=4 sw=4 et:
-set -x
 update_check() {
     local i p url sfname lpname bbname githubname rx found_version consider
     local update_override=$XBPS_SRCPKGDIR/$XBPS_TARGET_PKG/update

@@ -1,0 +1,34 @@
+# Template file for 'lksctp-tools'
+pkgname=lksctp-tools
+version=1.0.17
+revision=1
+#wrksrc=
+#create_wrksrc=yes
+#only_for_archs="i686 x86_64"
+build_style=gnu-configure
+#configure_args=""
+#make_build_args=""
+#make_install_args=""
+#conf_files=""
+#make_dirs="/var/log/dir 0755 root root"
+hostmakedepends=""
+makedepends="libtool automake autoconf linux-headers"
+depends=""
+short_desc="User-space access to Linux Kernel SCTP"
+maintainer="bitshark <bitshark@bitshark.net>"
+license="GPL-3 and GPLv2+ and LGPLv2 and MIT"
+homepage="http://lksctp.sourceforge.net"
+distfiles="http://downloads.sourceforge.net/lksctp/lksctp-tools-${version}.tar.gz"
+checksum=1aeb204cdb2befc94d9eb3037d1609c9d1d2cd5379d6dd2c0a8ca9b10533aa15
+
+lksctp-tools-devel_package() {
+    depends="lksctp-tools>=${version}_${revision}"
+    short_desc+=" - development files"
+    pkg_install() {
+        vmove usr/include
+        vmove usr/lib/pkgconfig
+        vmove "usr/lib/*.a"
+        vmove "usr/lib/*.so"
+    }
+}
+

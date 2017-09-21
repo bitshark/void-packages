@@ -1,6 +1,6 @@
 # Template file for 'salt'
 pkgname=salt
-version=2016.11.6
+version=2016.11.7
 revision=1
 build_style=python2-module
 noarch=yes

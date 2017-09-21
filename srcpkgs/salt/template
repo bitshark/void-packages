@@ -16,7 +16,7 @@ maintainer="Toyam Cox <Vaelatern@gmail.com>"
 license="Apache-2.0"
 homepage="http://saltstack.org/"
 distfiles="$PYPI_SITE/s/salt/salt-${version}.tar.gz"
-checksum=9031af68d31d0416fe3161526ef122a763afc6182bd63fe48b6c4d0a16a0703a
+checksum=279fa5bd73b5616620f628234575140f91df28b0d40d931569f179efabf27a2d
 
 post_install() {
 	vmkdir /etc/salt 0750

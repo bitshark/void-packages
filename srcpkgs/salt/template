@@ -9,7 +9,7 @@ conf_files="/etc/salt/*"
 hostmakedepends="python-devel"
 makedepends="python-devel"
 depends="python-yaml python-Jinja2 python-requests python-pyzmq python-crypto
- python-M2Crypto python-tornado python-msgpack dmidecode pciutils python-psutil python-future python-Mako"
+ python-M2Crypto python-tornado python-msgpack dmidecode pciutils python-psutil python-future python-Mako python-MarkupSafe"
 #changelog="https://docs.saltstack.com/en/latest/topics/releases/${version}.html"
 short_desc="Remote execution system, and configuration manager"
 maintainer="Toyam Cox <Vaelatern@gmail.com>"

@@ -1,13 +1,14 @@
 # Template file for 'pam'
 pkgname=pam
 version=1.3.0
-revision=1
+revision=18
 wrksrc="Linux-PAM-$version"
 build_style=gnu-configure
 configure_args="
  --libdir=/usr/lib --sbindir=/usr/bin --docdir=/usr/share/doc/pam
  --disable-nis --disable-cracklib --disable-audit --disable-selinux
- --disable-regenerate-docu BUILD_CFLAGS=-Os BUILD_LDFLAGS="
+ --enable-static-modules --disable-pie
+ --disable-regenerate-docu --enable-static BUILD_CFLAGS=-Os BUILD_LDFLAGS="
 hostmakedepends="automake gettext-devel flex libtool pkg-config"
 makedepends="libfl-devel db-devel"
 depends="pam-base"
@@ -29,7 +30,7 @@ homepage="http://www.kernel.org/pub/linux/libs/pam/"
 license="GPL-2"
 distfiles="http://linux-pam.org/library/Linux-PAM-${version}.tar.bz2"
 checksum=241aed1ef522f66ed672719ecf2205ec513fd0075ed80cda8e086a5b1a01d1bb
-
+subpackages="libpam libpam-devel"
 pre_configure() {
 	case "$XBPS_TARGET_MACHINE" in
 		*-musl) configure_args+=" ac_cv_search_crypt=no";;
@@ -46,30 +47,33 @@ post_install() {
 	sed -i -e "s|^#!/bin/sh -p$|#!/bin/sh|" \
 		${DESTDIR}/etc/security/namespace.init
 	chmod 755 ${DESTDIR}/etc/security/namespace.init
+	rm -rf ${DESTDIR}/usr/share/locale
 }
-
-pam-devel_package() {
-	replaces="pam-libs<1.1.8_8"
-	depends="pam-libs>=${version}_${revision}"
-	short_desc+=" - development files"
-	pkg_install() {
-		vmove usr/include
-		vmove usr/share/man/man3
-		vmove usr/share/doc
-		vmove usr/lib/*.so
-	}
-}
-pam-libs_package() {
+libpam_package() {
+	lib32disabled=yes
+	#replaces="pam-libs>=0 pam-userdb>=0 libpam<=${version}_${revision}"
+	replaces="pam-libs>=0 pam-userdb>=0"	
 	short_desc+=" - runtime libraries"
+	#depends="pam>=${version}_${revision}"	
 	pkg_install() {
 		vmove "usr/lib/*.so.*"
+		vmove "usr/lib/security/*.so"
 	}
 }
-pam-userdb_package() {
+libpam-devel_package() {
 	lib32disabled=yes
-	short_desc="PAM module to authenticate against a db database"
-	pkg_install() {
-		vmove usr/lib/security/pam_userdb.so
-		vmove usr/share/man/man8/pam_userdb.8
-	}
+	#replaces="pam-devel>=0 libpam-devel<=${version}_${revision}"
+	replaces="pam-devel>=0"
+    depends="libpam>=${version}_${revision}"
+    short_desc+=" - development files"
+    pkg_install() {
+        vmove "usr/include"
+        vmove "usr/share/man/man3"
+        vmove "usr/share/doc"
+        vmove "usr/lib/*.so"
+        vmove "usr/lib/*.a"
+		vmove "usr/lib/security/*.la"
+        vmove "usr/lib/security/*.a"
+    }
 }
+

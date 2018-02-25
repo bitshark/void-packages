@@ -4,7 +4,7 @@ version=3.0.3.1
 revision=3
 build_style=gnu-configure
 configure_args="--enable-unicode --with-opengl --with-sdl --with-libmspack
- --with-libnotify"
+ --with-libnotify --with-regex"
 short_desc="The wxWidgets GUI toolkit library (version 3)"
 maintainer="Martin Riese <grauehaare@gmx.de>"
 license="wxWindows"

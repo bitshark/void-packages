@@ -1,0 +1,18 @@
+#
+# Void Linux install trigger for frandom kernel module package
+#
+case "${ACTION}" in
+pre)
+	;;
+post)
+	if [ "$UPDATE" = "yes" ] ; then
+		# if we are updating the version , take no action
+		:
+	else
+		# if this is a new install, make frandom load at boot
+		echo "frandom" | tee -a /lib/modules-load.d/frandom.conf
+		# also load frandom now so the user gets /dev/frandom
+		modprobe frandom
+	fi	 
+	;;
+esac

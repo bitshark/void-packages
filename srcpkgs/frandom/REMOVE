@@ -1,0 +1,18 @@
+#
+# Void Linux remove trigger for frandom kernel module package
+#
+case "${ACTION}" in
+pre)
+	;;
+post)
+	if [ "$UPDATE" = "yes" ] ; then
+		# if we are updating the version , take no action
+		:
+	else
+		# since this is a removal, remove the conf file that loads frandom kernel mod at startup
+		rm -f /lib/modules-load.d/frandom.conf || true
+		# and unload the frandom kernel module
+		rmmod frandom
+	fi	 
+	;;
+esac

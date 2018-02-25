@@ -1,0 +1,11 @@
+diff -u -Naur frandom-1.2-orig/10-frandom.rules frandom-1.2/10-frandom.rules
+This patch removes the udev NAME directive so a warning will not show on boot,
+as explained and requested by biopsin.
+--- frandom-1.2-orig/10-frandom.rules	2018-02-27 19:23:19.052335600 -0800
++++ frandom-1.2/10-frandom.rules	2018-02-27 19:29:36.154344563 -0800
+@@ -5,4 +5,4 @@
+ # 50-udev.rules (0600) is too restrictive.
+ #
+ 
+-KERNEL=="[ef]random", NAME="%k", MODE="444", OPTIONS="last_rule"
++KERNEL=="[ef]random", MODE="444", OPTIONS="last_rule"

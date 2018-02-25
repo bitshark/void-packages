@@ -1,0 +1,42 @@
+# Template file for 'frandom'
+pkgname=frandom
+version=1.2
+revision=1
+patch_args="-Np1"
+wrksrc="${pkgname}-${version/r/-}"
+hostmakedepends="libtool pkg-config"
+short_desc="/dev/frandom fast PRNG (faster than urandom in <4.9 kernels) (via DKMS)"
+maintainer="bitshark <bitshark@bitshark.net>"
+license="GPL-2"
+homepage="http://billauer.co.il/frandom.html"
+distfiles="http://billauer.co.il/download/frandom-1.2.tar.gz"
+checksum=6d0c17fb114971909f9a230aa638d4bd727f30c4e2e840e75fd73d38f3069adb
+
+triggers="dkms"
+dkms_modules="frandom ${version/r/-}"
+depends="dkms>=2.2.0.3_9 "
+
+post_extract() {
+	# copy over Makefile and dkms.conf from pkgsrc/frandom/files
+	cp ${FILESDIR}/* ${wrksrc}
+}
+
+pre_configure() {
+	# zip up the source code plus our Makefile & dkms config
+	tar czf ../clean.tar.gz .
+}
+
+do_install() {
+	# create the dkms subdir in destdir
+	vmkdir usr/src/${pkgname}-${version/r/-}
+	# unzip the module source + Makefile + dkms config to /usr/src/frandom-X.Y
+	tar xf ../clean.tar.gz -C ${DESTDIR}/usr/src/${pkgname}-${version/r/-}
+	# create the udev rules subdir in destdir
+	vmkdir etc/udev/rules.d
+	# install the udev rules to the destdir
+	install -m 644 ${wrksrc}/*.rules ${DESTDIR}/etc/udev/rules.d
+}
+
+do_clean() {
+	rm -f ../clean.tar.gz
+}

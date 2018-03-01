@@ -1,0 +1,13 @@
+diff -u -Naur src/CMakeLists-orig.txt src/CMakeLists.txt 
+--- src/CMakeLists.txt	2018-02-28 08:43:14.878476291 -0800
++++ src/CMakeLists.txt	2018-02-28 08:35:45.324465607 -0800
+@@ -280,6 +280,8 @@
+ 			SET ( REQUIRED_LIBRARIES ${REQUIRED_LIBRARIES} ${OpenMP_CXX_FLAGS} )
+ 		ENDIF (OPENMP_FOUND)
+ 	
++		SET ( REQUIRED_LIBRARIES ${REQUIRED_LIBRARIES} "execinfo" )	
++
+ 		IF (ImageMagick_FOUND)
+ 			SET ( REQUIRED_LIBRARIES ${REQUIRED_LIBRARIES} ${ImageMagick_LIBRARIES} )
+ 		ENDIF (ImageMagick_FOUND)
+

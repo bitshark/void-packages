@@ -4,10 +4,10 @@ version=2.4.1
 revision=1
 wrksrc="${pkgname}-qt-${version}"
 build_style=python3-module
-only_for_archs="i686 x86_64"
+only_for_archs="i686 x86_64 x86_64-musl"
 pycompile_module="openshot_qt"
-hostmakedepends="python3"
-makedepends="python3-PyQt5 ffmpeg-devel python3-setuptools"
+hostmakedepends="python3 libexecinfo-devel"
+makedepends="python3-PyQt5 ffmpeg-devel python3-setuptools libexecinfo-devel"
 depends="python3-PyQt5-webkit python3-setuptools libopenshot>=0.1.7 mlt python3-httplib2 python3-pyzmq ImageMagick
  python3-requests python3.4-PyQt5-svg"
 short_desc="An open-source, non-linear video editor for Linux"
